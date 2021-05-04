@@ -1,3 +1,4 @@
+```{r}
 library(stats)
 library(shiny)
 library(shinydashboard)
@@ -213,3 +214,5 @@ observe({
 
   
 shinyApp(ui, server)
+
+```
