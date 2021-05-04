@@ -7,16 +7,8 @@ dashboardPage(
   dashboardHeader(title = "YouTube Search Engine"),
   dashboardSidebar(
     
-<<<<<<< Steven
     selectInput("region", "Select a Region:",
                 choices = "United States"),
-=======
-    selectInput(inputId = "region", 
-                label = "Choose Regions", 
-                choices = region_labels, 
-                multiple = TRUE
-    ),
->>>>>>> staging
     
     sidebarSearchForm(textId = "titlesearch",
                       buttonId = "searchButton",
@@ -31,7 +23,6 @@ dashboardPage(
     checkboxInput(inputId = "ratings",
                   label = "Show only Videos with Ratings Disabeled")
     
-<<<<<<< Steven
   ),
   
   dashboardBody(
@@ -46,13 +37,5 @@ dashboardPage(
       box(DTOutput(outputId = "top_dislikes"), width = 12, title = "Top 10 Videos in % of Dislikes For the Region")),
     fluidRow(
       box(DTOutput(outputId = "top_comments"), width= 12, title = "Top 10 Videos in % of Comments For the Region"))
-=======
-    ),
-  
-    dashboardBody(
-      verbatimTextOutput(outputId = "text"),
-      tableOutput("data"),
-      dataTableOutput(outputId = "dt_found")
->>>>>>> staging
   )
 )
