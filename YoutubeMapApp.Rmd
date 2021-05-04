@@ -11,7 +11,7 @@ library(maps)
 library(leaflet)
 library(ggvis)
 
-
+```{r}
 youtubeglobal <- read_csv("YoutubeGlobalData.csv")
 
 colnames(youtubeglobal)[18] <- "country"
