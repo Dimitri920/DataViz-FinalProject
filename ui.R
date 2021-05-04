@@ -1,33 +1,41 @@
 library(shiny)
 library(shinydashboard)
-
+library(shinyWidgets)
+library(DT)
 
 dashboardPage(
   dashboardHeader(title = "YouTube Search Engine"),
   dashboardSidebar(
-    dateInput("dates", "Select a Date:",
-                   min = "2006-07-23",
-                   max = "2018-06-14"
-    )),
+    
+    selectInput("region", "Select a Region:",
+                choices = "United States"),
+    
+    sidebarSearchForm(textId = "titlesearch",
+                      buttonId = "searchButton",
+                      label = "Search YouTube",
+                      icon = shiny::icon("search")
+    ),
+    
+    checkboxInput(inputId = "comments",
+                  label = "Show only Videos with Comments Disabeled"
+    ),
+    
+    checkboxInput(inputId = "ratings",
+                  label = "Show only Videos with Ratings Disabeled")
+    
+  ),
   
-  
-  
-    dashboardBody(
-      # Create a table of trending variables
-      box(width = 6,
-          status = "warning",
-          title = "Trending Topics",
-          solidHeader = T,
-          collapsible = T,
-          renderDataTable("trending_data")
-        
-        
-        
-      )
-      
-      
-      
-      
+  dashboardBody(
+    fluidRow(
+      verbatimTextOutput(outputId = "text"),
+      tableOutput("data"),
+      dataTableOutput(outputId = "dt_found")),
+    
+    fluidRow(
+      box(DTOutput(outputId = "top_likes"), width = 12, title = "Top 10 Videos in % of Likes For the Region")),
+    fluidRow(
+      box(DTOutput(outputId = "top_dislikes"), width = 12, title = "op 10 Videos in % of Dislikes For the Region")),
+    fluidRow(
+      box(DTOutput(outputId = "top_comments"), width= 12, title = "op 10 Videos in % of Comments For the Region"))
   )
 )
-
