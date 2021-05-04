@@ -11,13 +11,14 @@ library(leaflet)
 library(DT)
 library(tidyr)
 library(stringr)
+library(purrr)
 
 server <-function(input, output, session) {
   
   ## Interactive Map ###########################################
   
   # Create the map
-  mapregion <-  map("world", fill = TRUE, plot = FALSE)
+  mapregion <-  maps::map("world", fill = TRUE, plot = FALSE)
   
   filteredData <- reactive({
     if (input$country == "All countries") {
@@ -204,4 +205,3 @@ server <-function(input, output, session) {
   })
   
 }
-
