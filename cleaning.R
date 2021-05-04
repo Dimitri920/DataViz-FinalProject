@@ -1,9 +1,5 @@
 ---
 title: "cleaning"
-author: "Danielle Banks"
-date: "5/4/2021"
-output: html_document
-runtime: shiny
 ---
 
 ```{r}
