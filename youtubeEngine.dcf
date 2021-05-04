@@ -1,0 +1,13 @@
+name: youtubeEngine
+title: youtubeEngine
+username:
+account: danieb
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4075078
+bundleId: 4554227
+url: https://danieb.shinyapps.io/youtubeEngine/
+when: 1620112209.41187
+lastSyncTime: 1620112209.41187
+asMultiple: FALSE
+asStatic: FALSE
