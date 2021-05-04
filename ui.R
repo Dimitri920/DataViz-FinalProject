@@ -7,11 +7,8 @@ dashboardPage(
   dashboardHeader(title = "YouTube Search Engine"),
   dashboardSidebar(
     
-    selectInput(inputId = "region", 
-                label = "Choose Regions", 
-                choices = region_labels, 
-                multiple = TRUE
-    ),
+    selectInput("region", "Select a Region:",
+                choices = "United States"),
     
     sidebarSearchForm(textId = "titlesearch",
                       buttonId = "searchButton",
@@ -26,12 +23,19 @@ dashboardPage(
     checkboxInput(inputId = "ratings",
                   label = "Show only Videos with Ratings Disabeled")
     
-    ),
+  ),
   
-    dashboardBody(
+  dashboardBody(
+    fluidRow(
       verbatimTextOutput(outputId = "text"),
       tableOutput("data"),
-      dataTableOutput(outputId = "dt_found")
+      dataTableOutput(outputId = "dt_found")),
+    
+    fluidRow(
+      box(DTOutput(outputId = "top_likes"), width = 12, title = "Top 10 Videos in % of Likes For the Region")),
+    fluidRow(
+      box(DTOutput(outputId = "top_dislikes"), width = 12, title = "Top 10 Videos in % of Dislikes For the Region")),
+    fluidRow(
+      box(DTOutput(outputId = "top_comments"), width= 12, title = "Top 10 Videos in % of Comments For the Region"))
   )
 )
-
