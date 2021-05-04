@@ -77,8 +77,20 @@ youmapsum <- mutate(youmapsum,
                     "Comment Count:", youmapsum$comment_count))
                     
   
-#Build UI
 
+
+
+
+
+
+
+
+
+
+
+
+
+#Build UI
 ui <- bootstrapPage(
   
   
@@ -123,6 +135,29 @@ nothing<- data.frame()
 
 youtubeIcon <- makeIcon( iconUrl = "https://seeklogo.com/images/Y/youtube-2017-icon-logo-D1FE045118-seeklogo.com.png", iconWidth = 30, iconHeight = 25,
   iconAnchorX = 22, iconAnchorY = 25)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #Build Server
 server <-function(input, output, session) {
@@ -232,6 +267,26 @@ observe({
 }
 
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 shinyApp(ui, server)
 
 
