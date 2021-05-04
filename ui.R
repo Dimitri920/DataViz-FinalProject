@@ -7,24 +7,18 @@ dashboardPage(
   dashboardHeader(title = "YouTube Search Engine"),
   dashboardSidebar(
     
-    selectInput("region", "Select a Region:",
-                choices = "United States"),
+    selectInput(inputId = "region", 
+                label = "Choose Regions", 
+                choices = region_labels, 
+                multiple = TRUE
+    ),
     
     sidebarSearchForm(textId = "titlesearch",
                       buttonId = "searchButton",
                       label = "Search YouTube",
                       icon = shiny::icon("search")
-    ),
+    )),
     
-    checkboxInput(inputId = "comments",
-                  label = "Show only Videos with Comments Disabeled"
-    ),
-    
-    checkboxInput(inputId = "ratings",
-                  label = "Show only Videos with Ratings Disabeled")
-    
-  ),
-  
   dashboardBody(
     fluidRow(
       verbatimTextOutput(outputId = "text"),

@@ -15,7 +15,10 @@ shinyServer(function(input, output, session) {
   
   updateSelectInput(session,
                     "region", 
-                    choices = region_labels)
+                    choices = region_labels, 
+                    selected = c("United States", "Great Britain", "Germany", 
+                                 "Canada", "France", "Russia", "Mexico", 
+                                 "South Korea", "Japan", "India"))
   
   
   updateSearchInput(session,
