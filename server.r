@@ -1,5 +1,6 @@
 library(shiny)
 library(shinydashboard)
+<<<<<<< Steven
 library(dplyr)
 library(tidyr)
 library(DT)
@@ -17,6 +18,21 @@ shinyServer(function(input, output, session) {
                     "region", 
                     choices = region_labels)
   
+=======
+library(ggplot2)
+library(readr)
+library(DT)
+library(dplyr)
+
+shinyServer(function(input, output, session) {
+  
+  updateSelectInput(session,
+                    "region", 
+                    choices = region_labels, 
+                    selected = c("United States", "Great Britain", "Germany", 
+                                 "Canada", "France", "Russia", "Mexico", 
+                                 "South Korea", "Japan", "India"))
+>>>>>>> staging
   
   updateSearchInput(session,
                     "titlesearch")
@@ -48,6 +64,7 @@ shinyServer(function(input, output, session) {
         filter(region %in% input$region) -> dt_found
     }
     return(dt_found)
+<<<<<<< Steven
     
   })
   
@@ -94,3 +111,9 @@ shinyServer(function(input, output, session) {
   })
   
 })
+=======
+  })
+  
+}
+)
+>>>>>>> staging
