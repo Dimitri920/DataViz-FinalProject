@@ -34,8 +34,8 @@ dashboardPage(
     fluidRow(
       box(DTOutput(outputId = "top_likes"), width = 12, title = "Top 10 Videos in % of Likes For the Region")),
     fluidRow(
-      box(DTOutput(outputId = "top_dislikes"), width = 12, title = "op 10 Videos in % of Dislikes For the Region")),
+      box(DTOutput(outputId = "top_dislikes"), width = 12, title = "Top 10 Videos in % of Dislikes For the Region")),
     fluidRow(
-      box(DTOutput(outputId = "top_comments"), width= 12, title = "op 10 Videos in % of Comments For the Region"))
+      box(DTOutput(outputId = "top_comments"), width= 12, title = "Top 10 Videos in % of Comments For the Region"))
   )
 )
