@@ -6,11 +6,22 @@ library(DT)
 
 shinyServer(function(input, output, session) {
   
-  regiondata <- eventReactive(input$region, {
-    myregion <- input$region
+  regiondata <- reactive({
     
-    df <- youtube_world %>%
-      filter(region==myregion)
+    txt <- input$titlesearch
+    
+    youtube_world %>%
+      mutate(
+        keep_this_row = case_when(
+          grepl(txt, youtube_world$title) ~ T,
+          grepl(txt, youtube_world$channel_title) ~ T,
+          grepl(txt, youtube_world$tags) ~ T,
+          T ~ F
+        )
+      ) %>%
+      filter(keep_this_row == T) %>%
+      filter(region %in% input$region)
+    
   })
   
   updateSelectInput(session,
@@ -33,30 +44,19 @@ shinyServer(function(input, output, session) {
     
     if(input$titlesearch == ""){
       dt_found <- NULL
-    } 
-    
-    else{
-      txt <- input$titlesearch
-      
-      youtube_world %>%
-        mutate(
-          keep_this_row = case_when(
-            grepl(txt, youtube_world$title) ~ T,
-            grepl(txt, youtube_world$channel_title) ~ T,
-            grepl(txt, youtube_world$tags) ~ T,
-            T ~ F
-          )
-        ) %>%
-        filter(keep_this_row == T) %>%
-        filter(region %in% input$region) -> dt_found
+    } else{
+      dt_found <- regiondata()
     }
     return(dt_found)
     
   })
   
+  
+ 
+  
   output$top_likes <- renderDT({
     likes_df <- regiondata() %>%
-      mutate(across(title, str_sub, 1, 10)) %>%
+      mutate(across(title, str_sub, 1, 50)) %>%
       distinct(video_id, .keep_all = TRUE) %>% 
       mutate("Percentage_Likes"=round(100*((likes)/(views)),digits = 2)) %>% 
       arrange(-Percentage_Likes) %>% top_n(10,wt = Percentage_Likes) %>%
@@ -70,7 +70,7 @@ shinyServer(function(input, output, session) {
   
   output$top_dislikes <- renderDT({
     dislikes_df <- regiondata() %>%
-      mutate(across(title, str_sub, 1, 10)) %>%
+      mutate(across(title, str_sub, 1, 50)) %>%
       distinct(video_id, .keep_all = TRUE) %>% 
       mutate("Percentage_Dislikes"=round(100*((dislikes)/(views)),digits = 2)) %>%
       arrange(-Percentage_Dislikes) %>% top_n(10,wt = Percentage_Dislikes) %>%
@@ -84,7 +84,7 @@ shinyServer(function(input, output, session) {
   
   output$top_comments <- renderDT({
     comments_df <- regiondata() %>%
-      mutate(across(title, str_sub, 1, 10)) %>%
+      mutate(across(title, str_sub, 1, 50)) %>%
       distinct(video_id, .keep_all = TRUE) %>% 
       mutate("Percentage_Comments"=round(100*((comment_count)/(views)),digits = 2)) %>%
       arrange(-Percentage_Comments) %>% top_n(10,wt = Percentage_Comments) %>%
