@@ -135,7 +135,7 @@ server <-function(input, output, session) {
   updateSelectInput(session,
                     "region", 
                     choices = region_labels, 
-                    selected = c("United States", "Great Britain", "Germany", 
+                    selected = c("United States", "United Kingdom", "Germany", 
                                  "Canada", "France", "Russia", "Mexico", 
                                  "South Korea", "Japan", "India"))
   
